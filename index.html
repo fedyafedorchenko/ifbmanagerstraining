@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InFlowBusiness — обучение менеджеров</title>
+  <meta name="description" content="Единый лендинг с материалами для обучения менеджеров InFlowBusiness: документы, видео, инструменты и новый подход к встречам." />
+
+  <style>
+    :root {
+      --bg: #070711;
+      --white: #ffffff;
+      --muted: rgba(255, 255, 255, 0.62);
+      --muted-2: rgba(255, 255, 255, 0.42);
+      --card: rgba(255, 255, 255, 0.06);
+      --card-2: rgba(255, 255, 255, 0.09);
+      --border: rgba(255, 255, 255, 0.11);
+      --cyan: #b7f7ff;
+      --pink: #f1c6ff;
+      --black: #000000;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --shadow: 0 32px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .page-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.2;
+      animation: gridFade 6s ease-in-out infinite alternate;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(110px);
+      opacity: 0.7;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 440px;
+      height: 440px;
+      left: -12%;
+      top: -15%;
+      background: rgba(139, 92, 246, 0.35);
+    }
+
+    .orb-2 {
+      width: 360px;
+      height: 360px;
+      right: -8%;
+      top: 18%;
+      background: rgba(34, 211, 238, 0.24);
+      animation-delay: 1.5s;
+    }
+
+    .orb-3 {
+      width: 460px;
+      height: 460px;
+      left: 35%;
+      bottom: -18%;
+      background: rgba(217, 70, 239, 0.22);
+      animation-delay: 0.7s;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(18px, -14px, 0) scale(1.05); }
+    }
+
+    @keyframes gridFade {
+      from { opacity: 0.16; }
+      to { opacity: 0.28; }
+    }
+
+    .container {
+      width: min(100% - 40px, 1240px);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 32px 0 72px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(22px);
+      border-radius: 999px;
+      padding: 12px 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon,
+    .icon-box {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 800;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .brand-subtitle {
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--muted-2);
+    }
+
+    .nav-button,
+    .primary-button,
+    .secondary-button,
+    .open-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-button,
+    .primary-button {
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .nav-button {
+      padding: 10px 20px;
+    }
+
+    .primary-button {
+      padding: 14px 24px;
+    }
+
+    .secondary-button {
+      padding: 14px 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .open-button {
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 650;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-button:hover,
+    .primary-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .secondary-button:hover,
+    .open-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.17);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .hero-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 56px;
+      padding: 92px 0 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      padding: 9px 15px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 14px;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.93;
+      letter-spacing: -0.065em;
+      font-weight: 760;
+    }
+
+    .hero-text {
+      max-width: 690px;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .preview-wrap {
+      position: relative;
+    }
+
+    .preview-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: 42px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.42), rgba(34, 211, 238, 0.2), rgba(217, 70, 239, 0.32));
+      filter: blur(32px);
+    }
+
+    .preview-card {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 42px;
+      background: rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(30px);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .preview-inner {
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 22px;
+    }
+
+    .preview-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .preview-kicker {
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 14px;
+    }
+
+    .preview-title {
+      margin-top: 4px;
+      font-size: 25px;
+      font-weight: 760;
+    }
+
+    .progress-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .progress-item {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 20px;
+      padding: 15px;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 14px;
+    }
+
+    .progress-number {
+      color: rgba(255, 255, 255, 0.38);
+    }
+
+    .progress-track {
+      height: 6px;
+      margin-top: 13px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: var(--progress);
+      border-radius: 999px;
+      background: var(--white);
+      transform-origin: left;
+      animation: loadProgress 1.2s ease both;
+    }
+
+    @keyframes loadProgress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .section {
+      position: relative;
+      padding: 78px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 36px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      margin-bottom: 13px;
+      color: rgba(183, 247, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 13px;
+    }
+
+    .section-kicker.pink {
+      color: rgba(241, 198, 255, 0.7);
+    }
+
+    h2 {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      font-weight: 760;
+    }
+
+    .section-description {
+      max-width: 560px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .glass-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      backdrop-filter: blur(26px);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      transition: 0.25s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      background: var(--card-2);
+    }
+
+    .material-card {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .type-pill {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 6px 11px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 12px;
+    }
+
+    h3 {
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      font-weight: 720;
+    }
+
+    .card-text {
+      flex: 1;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .card-action {
+      margin-top: 26px;
+    }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sticky-card {
+      position: sticky;
+      top: 24px;
+    }
+
+    .note-box {
+      margin-top: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    .video-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .video-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .video-info {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .video-icon {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      flex: 0 0 auto;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 24px;
+    }
+
+    .small-label {
+      margin-bottom: 5px;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 14px;
+    }
+
+    .video-text {
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .center-head {
+      max-width: 780px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .center-head .section-description {
+      margin: 18px auto 0;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .tool-card {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+    }
+
+    .tool-card::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      top: -50px;
+      width: 170px;
+      height: 170px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      filter: blur(36px);
+    }
+
+    .tool-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tool-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .tool-number {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 14px;
+    }
+
+    .tool-description {
+      min-height: 76px;
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .approach-card {
+      padding: 40px;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .cyan-box {
+      margin-top: 30px;
+      border: 1px solid rgba(183, 247, 255, 0.22);
+      border-radius: 24px;
+      background: rgba(183, 247, 255, 0.1);
+      padding: 20px;
+      color: rgba(236, 254, 255, 0.86);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .steps-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 20px;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .step-text {
+      padding-top: 8px;
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.65;
+    }
+
+    .first-step-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .check-icon {
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    blockquote {
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.45;
+      letter-spacing: -0.035em;
+      font-weight: 650;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .quote-note {
+      margin-top: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer {
+      padding: 42px 0;
+    }
+
+    .footer-inner {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .practice-grid,
+      .approach-grid,
+      .first-step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sticky-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 28px, 1240px);
+      }
+
+      .nav-button {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero-grid {
+        padding-top: 58px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 54px 0;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 18px;
+      }
+
+      .cards-grid,
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .video-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .approach-card {
+        padding: 24px;
+      }
+
+      .glass-card {
+        border-radius: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <header class="hero container">
+    <nav class="nav reveal">
+      <a href="#top" class="brand" aria-label="InFlowBusiness Training Hub">
+        <div class="brand-icon">IF</div>
+        <div>
+          <div class="brand-title">InFlowBusiness</div>
+          <div class="brand-subtitle">training hub for managers</div>
+        </div>
+      </a>
+      <a href="#materials" class="nav-button">Начать обучение</a>
+    </nav>
+
+    <div class="hero-grid" id="top">
+      <div class="reveal">
+        <div class="badge">✦ Единое пространство для подготовки менеджеров</div>
+        <h1>Обучение менеджеров без хаоса в документах</h1>
+        <p class="hero-text">
+          Здесь собраны все материалы для погружения в продукт, понимания клиента, изучения скрипта, просмотра встреч и подготовки к демонстрации решения.
+        </p>
+        <div class="hero-actions">
+          <a href="#materials" class="primary-button">Перейти к материалам</a>
+          <a href="#new-approach" class="secondary-button">Новый подход к встречам</a>
+        </div>
+      </div>
+
+      <div class="preview-wrap reveal">
+        <div class="preview-glow"></div>
+        <div class="preview-card">
+          <div class="preview-inner">
+            <div class="preview-head">
+              <div>
+                <div class="preview-kicker">training progress</div>
+                <div class="preview-title">Manager onboarding</div>
+              </div>
+              <div class="icon-box">↗</div>
+            </div>
+
+            <div class="progress-list">
+              <div class="progress-item">
+                <div class="progress-row"><span>Продукт</span><span class="progress-number">01</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 72%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-row"><span>ЦА</span><span class="progress-number">02</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 76%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-row"><span>Конкуренты</span><span class="progress-number">03</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 80%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-row"><span>Скрипт</span><span class="progress-number">04</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 84%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-row"><span>Инструменты</span><span class="progress-number">05</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 88%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-row"><span>Встречи</span><span class="progress-number">06</span></div>
+                <div class="progress-track"><div class="progress-fill" style="--progress: 92%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container" id="materials">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">01 / база</div>
+          <h2>Материалы для изучения</h2>
+        </div>
+        <p class="section-description">
+          Начните с погружения в продукт и клиента. После этого переходите к скрипту, конкурентам и сайту проекта.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">📘</div>
+            <div class="type-pill">Документ</div>
+          </div>
+          <h3>Руководство пользователя SAAS-сервиса</h3>
+          <p class="card-text">Базовое понимание сервиса, интерфейса и логики продукта.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://docs.google.com/document/d/1CP8NA55zE3aUYIdQuNdXUGOxn7sludUfPWYwRG9yU4M/edit?tab=t.0">Открыть ↗</a></div>
+        </article>
+
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">📊</div>
+            <div class="type-pill">Документ</div>
+          </div>
+          <h3>Анализ ЦА</h3>
+          <p class="card-text">Кто наш клиент, какие у него боли, мотивы и точки принятия решения.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://docs.google.com/document/d/1mDcFPYFgEWaqA27lOPaGAG4ulBw-JM_WOLLcIdUSLNA/edit?tab=t.0#heading=h.owbo4mi1pax7">Открыть ↗</a></div>
+        </article>
+
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">📈</div>
+            <div class="type-pill">Таблица</div>
+          </div>
+          <h3>Анализ конкурентов</h3>
+          <p class="card-text">Сравнение рынка, аргументы против конкурентов и понимание позиционирования.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1k6FYeJUNzTUptS8ZJBsoXySKlWAkRkp-8mAs78rHTIE/edit?gid=1639037982#gid=1639037982">Открыть ↗</a></div>
+        </article>
+
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">🧩</div>
+            <div class="type-pill">Mind map</div>
+          </div>
+          <h3>Скелет скрипта звонков</h3>
+          <p class="card-text">Опорная структура разговора, чтобы не терять контроль на встрече.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://app.xmind.com/share/Sk5IkSnZ">Открыть ↗</a></div>
+        </article>
+
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">🌐</div>
+            <div class="type-pill">Сайт</div>
+          </div>
+          <h3>Сайт проекта InFlowBusiness</h3>
+          <p class="card-text">Публичная упаковка продукта, которую видит потенциальный клиент.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://inflowbusiness.ru">Открыть ↗</a></div>
+        </article>
+
+        <article class="glass-card material-card reveal">
+          <div class="card-top">
+            <div class="icon-box">🎓</div>
+            <div class="type-pill">Документ</div>
+          </div>
+          <h3>Погружение менеджера</h3>
+          <p class="card-text">Главный вводный материал перед самостоятельной работой с клиентами.</p>
+          <div class="card-action"><a class="open-button" target="_blank" rel="noreferrer" href="https://docs.google.com/document/d/1kx_mOP2CZl4JKNBgAGh5apx0-xAnysKfaS5qfiag5o8/edit?usp=sharing">Открыть ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="practice-grid">
+        <div class="glass-card sticky-card reveal">
+          <div class="section-kicker pink">02 / практика</div>
+          <h2>Записи встреч</h2>
+          <p class="section-description" style="margin-top: 18px;">
+            Видео нужны, чтобы увидеть продукт в действии, понять старую механику встреч и быстрее перейти к новому подходу.
+          </p>
+          <div class="note-box">🎥 Перед клиентской встречей обязательно включить запись встречи.</div>
+        </div>
+
+        <div class="video-list">
+          <article class="glass-card video-card reveal">
+            <div class="video-info">
+              <div class="video-icon">▶</div>
+              <div>
+                <div class="small-label">Видео 1</div>
+                <h3>Встреча менеджеров и тех. специалиста</h3>
+                <p class="video-text">Обучение личному кабинету и продукту.</p>
+              </div>
+            </div>
+            <a class="open-button" target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1lOpIuhiJB-s7l4-RVognjKvZRrmbsEYH/view?usp=sharing">Смотреть ↗</a>
+          </article>
+
+          <article class="glass-card video-card reveal">
+            <div class="video-info">
+              <div class="video-icon">▶</div>
+              <div>
+                <div class="small-label">Видео 2</div>
+                <h3>Демо-встреча с клиентом №1</h3>
+                <p class="video-text">Старый скрипт. Использовать как пример для разбора и сравнения.</p>
+              </div>
+            </div>
+            <a class="open-button" target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1pQkuYT107SG7x_bEK8UvqngQsufJyEc2/view?usp=sharing">Смотреть ↗</a>
+          </article>
+
+          <article class="glass-card video-card reveal">
+            <div class="video-info">
+              <div class="video-icon">▶</div>
+              <div>
+                <div class="small-label">Видео 3</div>
+                <h3>Демо-встреча с клиентом №2</h3>
+                <p class="video-text">Старый скрипт. Обратить внимание на структуру, переходы и вопросы.</p>
+              </div>
+            </div>
+            <a class="open-button" target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1ZyK5i4ZgFFBzV0OrAlwnJX_Hh2jZ1vrU/view?usp=sharing">Смотреть ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center-head reveal">
+        <div class="section-kicker">03 / инструменты</div>
+        <h2>Два инструмента для сильной встречи</h2>
+        <p class="section-description">
+          Перед созвоном с клиентом нужно изучить оба инструмента. Они помогают вести встречу не через давление, а через выгоду, потребности и конкретное решение.
+        </p>
+      </div>
+
+      <div class="tools-grid">
+        <article class="glass-card tool-card reveal">
+          <div class="tool-content">
+            <div class="tool-top">
+              <div class="icon-box">🧮</div>
+              <div class="tool-number">Инструмент 01</div>
+            </div>
+            <h3>Калькулятор выгоды</h3>
+            <p class="tool-description">Показывает клиенту, сколько он может дополнительно заработать на мобильном приложении.</p>
+            <a class="open-button" target="_blank" rel="noreferrer" href="https://fedyafedorchenko.github.io/calculator/">Изучить инструмент ↗</a>
+          </div>
+        </article>
+
+        <article class="glass-card tool-card reveal">
+          <div class="tool-content">
+            <div class="tool-top">
+              <div class="icon-box">🎯</div>
+              <div class="tool-number">Инструмент 02</div>
+            </div>
+            <h3>Инструмент закрытия потребностей</h3>
+            <p class="tool-description">Помогает связать боли клиента с конкретными блоками и возможностями решения.</p>
+            <a class="open-button" target="_blank" rel="noreferrer" href="https://fedyafedorchenko.github.io/items/">Изучить инструмент ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="new-approach">
+      <div class="glass-card approach-card reveal">
+        <div class="approach-grid">
+          <div>
+            <div class="section-kicker pink">04 / новый подход</div>
+            <h2>Как теперь строится встреча</h2>
+            <p class="section-description" style="margin-top: 20px;">
+              Сейчас вводим новый подход. Встреча должна быть структурной: сначала вводим клиента в разговор, затем показываем выгоду, разбираем его задачи и только после этого переходим к личному кабинету.
+            </p>
+            <div class="cyan-box">
+              Основная задача нового подхода — сильнее закрывать клиента через понятную выгоду и решение его задач, а не через продажу в лоб.
+            </div>
+          </div>
+
+          <div class="steps-list">
+            <div class="step-card reveal">
+              <div class="step-number">1</div>
+              <p class="step-text">Созвон и настройка клиента на диалог.</p>
+            </div>
+            <div class="step-card reveal">
+              <div class="step-number">2</div>
+              <p class="step-text">Демонстрация выгоды и потенциального роста.</p>
+            </div>
+            <div class="step-card reveal">
+              <div class="step-number">3</div>
+              <p class="step-text">Разбор потребностей, болей и возражений.</p>
+            </div>
+            <div class="step-card reveal">
+              <div class="step-number">4</div>
+              <p class="step-text">Переход в личный кабинет и показ готового решения, собранного под клиента по блокам.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="first-step-grid">
+        <article class="glass-card reveal">
+          <div class="icon-box" style="margin-bottom: 24px;">💬</div>
+          <h2>Первый пункт встречи</h2>
+          <p class="section-description" style="margin-top: 18px;">
+            Первый пункт — это этап, где вы не начинаете сразу что-то продавать, а правильно вводите клиента в разговор.
+          </p>
+
+          <div class="check-list">
+            <div class="check-item"><span class="check-icon">✓</span><span>установить контакт</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>понять настроение клиента</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>задать тон встрече</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>коротко объяснить, как пройдет созвон</span></div>
+            <div class="check-item"><span class="check-icon">✓</span><span>подготовить клиента к дальнейшему обсуждению</span></div>
+          </div>
+        </article>
+
+        <article class="glass-card reveal">
+          <div class="small-label" style="text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 18px;">пример формулировки</div>
+          <blockquote>
+            «Смотрите, сегодня хочу сначала понять вашу текущую ситуацию, показать, где сейчас есть точки роста, а после — показать решение, которое можно подстроить именно под ваш бизнес.»
+          </blockquote>
+          <p class="quote-note">
+            Клиент должен почувствовать, что это не продажа в лоб, а нормальный структурный разговор про его задачи и возможности роста.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <div class="footer-inner reveal">
+      InFlowBusiness · Training Hub · материалы для подготовки менеджеров
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 35, 260)}ms`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
